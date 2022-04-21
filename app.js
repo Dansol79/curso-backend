@@ -1,6 +1,6 @@
 const Contenedor = require('./contenedor');
 
-const contenedor1 = new Contenedor('productos.txt');
+const contenedor1 = new Contenedor('productos.json');
 
 
 
