@@ -32,13 +32,13 @@ contenedor1.save({
 contenedor1.leer('productos.txt');
 
 console.log(contenedor1.productos);
-// contenedor.getById(2);
-// console.log(contenedor.getById(2));
-// console.log(contenedor.getAll());
-// contenedor.deleteById(2);
-// console.log(contenedor.productos);
-// contenedor.deleteAll();
-// console.log(contenedor.productos);
+// contenedor1.getById(2);
+// console.log(contenedor1.getById(2));
+// console.log(contenedor1.getAll());
+// contenedor1.deleteById(2);
+// console.log(contenedor1.productos);
+// contenedor1.deleteAll();
+// console.log(contenedor1.productos);
 
 
 
