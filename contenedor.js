@@ -28,6 +28,7 @@ class Contenedor {
    async escribir() {
         const json = JSON.stringify(this.productos);
         await fs.writeFileSync(this.nombreArchivo, json);
+        
    }
    async leer(){
         const contenido = await fs.readFileSync(this.nombreArchivo, 'utf-8');
@@ -57,7 +58,10 @@ class Contenedor {
 
     deleteById(id) {
         const producto = this.productos.find(producto => producto.id === id);
-        this.productos = this.productos.filter(producto => producto.id !== id);
+        if (producto) {
+            this.productos = this.productos.filter(producto => producto.id !== id);
+            this.escribir();
+        }
     }
 
     deleteAll() {

@@ -4,6 +4,12 @@ const contenedor1 = new Contenedor('productos.txt');
 
 
 
+
+contenedor1.save({
+    title: 'El Alquimista',
+    precio: 90,
+    thumbnail: 'https://via.PabloCohelo.com/250'
+});
 contenedor1.save({
     title: 'El Alquimista',
     precio: 90,
@@ -35,7 +41,7 @@ console.log(contenedor1.productos);
 // contenedor1.getById(2);
 // console.log(contenedor1.getById(2));
 // console.log(contenedor1.getAll());
-// contenedor1.deleteById(2);
+// contenedor1.deleteById(1);
 // console.log(contenedor1.productos);
 // contenedor1.deleteAll();
 // console.log(contenedor1.productos);
