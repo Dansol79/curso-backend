@@ -22,29 +22,37 @@ const fs = require('fs');
 class Contenedor {
     constructor(nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
+        this.contarID = 0;
         this.productos = [];
+      
     }
 
+    async leer(){
+        try{
+            const contenido = await fs.readFileSync(this.nombreArchivo, 'utf-8');
+            this.productos = JSON.parse(contenido);
+            
+        }catch(error){
+            console.log('No hay archivo');
+        }
+  }
+
    async escribir() {
-        const json = JSON.stringify(this.productos);
-        await fs.writeFileSync(this.nombreArchivo, json);
+        await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(this.productos));
         
    }
-   async leer(){
-        const contenido = await fs.readFileSync(this.nombreArchivo, 'utf-8');
-        this.productos = JSON.parse(contenido);
-  }
    
-
-    save(producto) {
-        let id = 1;
+    save(object) {
+        this.contarID++;
+        let id = this.contarID;
         if (this.productos.length > 0) {
             id = this.productos[this.productos.length - 1].id + 1;
         }
-        producto.id = id;
-        this.productos.push(producto);
+        object.id = id;
+        this.productos.push(object);
         this.escribir();
         return id;
+
     }
 
     getById(id) {
@@ -57,21 +65,23 @@ class Contenedor {
     }
 
     deleteById(id) {
-        const producto = this.productos.find(producto => producto.id === id);
-        if (producto) {
-            this.productos = this.productos.filter(producto => producto.id !== id);
-            this.escribir();
+        let resultado
+        if(this.productos != []){
+            resultado = this.productos.filter(producto => producto.id !== id);
+            this.productos = new Array(resultado);
+            this.escribir()
+            resultado = true
+        }else{
+            console.log('No hay productos');
         }
+        return resultado;
+      
     }
 
-    deleteAll() {
-
-       if(this.productos.length != 0){
-        this.productos = [];
-        this.escribir();
-       }
+    async deleteAll() {
+        this.productos = this.productos.splice(0, this.productos.length);
+        
     }
-
 }
 
 module.exports = Contenedor;
