@@ -40,11 +40,11 @@ contenedor1.leer('productos.txt');
 // console.log(contenedor1.productos);
 // contenedor1.getById(2);
 // console.log(contenedor1.getById(2));
-// console.log(contenedor1.getAll());
+console.log(contenedor1.getAll());
 // contenedor1.deleteById(1);
 // console.log(contenedor1.productos);
-contenedor1.deleteAll();
-console.log(contenedor1.productos);
+// contenedor1.deleteAll();
+// console.log(contenedor1.productos);
 
 
 

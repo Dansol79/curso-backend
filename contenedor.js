@@ -22,9 +22,9 @@ const fs = require('fs');
 class Contenedor {
     constructor(nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
-        this.contarID = 0;
+        this.contarID = 1;
         this.productos = [];
-      
+        
     }
 
     async leer(){
@@ -33,7 +33,7 @@ class Contenedor {
             this.productos = JSON.parse(contenido);
             
         }catch(error){
-            console.log('No hay archivo');
+           
         }
   }
 
@@ -43,7 +43,6 @@ class Contenedor {
    }
    
     save(object) {
-        this.contarID++;
         let id = this.contarID;
         if (this.productos.length > 0) {
             id = this.productos[this.productos.length - 1].id + 1;
@@ -55,22 +54,28 @@ class Contenedor {
 
     }
 
-    getById(id) {
-        const producto = this.productos.find(producto => producto.id === id);
-        return producto;
+   async getById(id) {
+        await this.leer();
+        if(this.productos !== []){
+            const producto = this.productos.find(producto => producto.id === id);
+            return console.log(producto);
+        }else{
+            return null;
+        }
     }
 
-    getAll() {
-        return this.productos;
+   async  getAll() {
+       await this.leer();
+       return this.productos;
     }
 
     deleteById(id) {
         let resultado
-        if(this.productos != []){
+        if(this.productos !== []){
             resultado = this.productos.filter(producto => producto.id !== id);
             this.productos = new Array(resultado);
-            this.escribir()
-            resultado = true
+            this.escribir();
+         
         }else{
             console.log('No hay productos');
         }
@@ -78,10 +83,11 @@ class Contenedor {
       
     }
 
-    async deleteAll() {
-        this.productos = this.productos.splice(0, this.productos.length);
-        
+  deleteAll() {
+       this.productos = [];
+      
     }
+
 }
 
 module.exports = Contenedor;
