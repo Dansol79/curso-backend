@@ -69,10 +69,10 @@ class Contenedor {
        return this.productos;
     }
 
-    deleteById(id) {
-        let resultado
-        if(this.productos !== []){
-            resultado = this.productos.filter(producto => producto.id !== id);
+   async deleteById(id) {
+        await this.leer();
+        if(this.leer() !== []){
+          const  resultado = this.productos.filter(producto => producto.id !== id);
             this.productos = new Array(resultado);
             this.escribir();
          

@@ -1,6 +1,6 @@
 const Contenedor = require('./contenedor');
 
-const contenedor1 = new Contenedor('productos.json');
+const contenedor1 = new Contenedor('./productos.json');
 
 
 
@@ -35,12 +35,12 @@ contenedor1.save({
     precio: 200,
     thumbnail: 'https://via.placeholder.com/100'
 });
-contenedor1.leer('productos.txt');
+contenedor1.leer('productos.json');
 
-// console.log(contenedor1.productos);
+console.log(contenedor1.productos);
 // contenedor1.getById(2);
 // console.log(contenedor1.getById(2));
-console.log(contenedor1.getAll());
+// console.log(contenedor1.getAll());
 // contenedor1.deleteById(1);
 // console.log(contenedor1.productos);
 // contenedor1.deleteAll();
